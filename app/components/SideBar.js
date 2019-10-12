@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import slug from 'slug';
+import Loading from './Loading';
 
 function SideBar({ title, list, loading }) {
   const match = useRouteMatch();
 
   return loading ? (
-    <h1>LOADING</h1>
+    <Loading />
   ) : (
     <div>
       <h3 className="header">{title}</h3>

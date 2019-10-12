@@ -4,6 +4,7 @@ import SideBar from './SideBar';
 import { getTeamNames } from '../utils/api';
 import Team from './Team';
 import TeamLogo from './TeamLogo';
+import Loading from './Loading';
 
 function Teams() {
   const [teamNames, setTeamNames] = useState([]);
@@ -33,7 +34,7 @@ function Teams() {
             <Team id={match.params.teamId}>
               {team =>
                 team === null ? (
-                  <h1>LOADING</h1>
+                  <Loading />
                 ) : (
                   <div style={{ width: '100%' }}>
                     <TeamLogo id={team.id} className="center" />

@@ -5,13 +5,18 @@ import { getTeam } from '../utils/api';
 function Team({ id, children }) {
   const [team, setTeam] = useState(null);
 
-  const fetchTeam = id => {
-    getTeam(id).then(team => setTeam(team));
-  };
-
   useEffect(() => {
+    let isMounted = true;
     setTeam(null);
-    fetchTeam(id);
+    getTeam(id).then(team => {
+      if (isMounted) {
+        setTeam(team);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   return children(team);
